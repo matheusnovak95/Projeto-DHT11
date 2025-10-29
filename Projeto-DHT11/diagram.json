@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "author": "matheus novak",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": { "env": "micropython-20231227-v1.22.0" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -124.5,
+      "left": -255,
+      "attrs": { "temperature": "32", "humidity": "41.5" }
+    },
+    { "type": "wokwi-led", "id": "led1", "top": -90, "left": 215, "attrs": { "color": "red" } }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:5V", "dht1:VCC", "red", [ "h0" ] ],
+    [ "dht1:SDA", "esp:2", "green", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "led1:C", "esp:GND.2", "green", [ "v0" ] ],
+    [ "led1:A", "esp:4", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
